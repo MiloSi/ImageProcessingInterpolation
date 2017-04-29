@@ -2,7 +2,7 @@
 /**************************************************************
 2017.04.29
 
-Created by Milo
+Created by Milo Si (Called Me C)
 I Studied (Exaclty, Learned) Scale Transfrom and Interpolation
 
 I named all function and object(variable) 'PasscalCase' and 'camelCase'
