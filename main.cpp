@@ -42,7 +42,7 @@ using namespace cv;
 
 Mat NearestNeighbourInterpolation(const Mat src, const double scaleWidth, const double scaleHeight) {
 
-	Mat dst((int) (src.rows * scaleHeight +0.5), (int) (src.cols * scaleHeight +0.5), CV_8UC3);
+	Mat dst((int) (src.rows * scaleHeight +0.5), (int) (src.cols * scaleWidth +0.5), CV_8UC3);
 
 	for (int y = 0; y < dst.rows; y++)
 	{
@@ -95,14 +95,19 @@ Mat BilinearInterpolation(const Mat src, const double scaleWidth, const double s
 
 	Vec3b r1, r2;
 
-	Mat dst((int)(src.rows * scaleHeight +0.5), (int)(src.cols * scaleHeight +0.5), CV_8UC3);
+	Mat dst((int)(src.rows * scaleHeight +0.5), (int)(src.cols * scaleWidth +0.5), CV_8UC3);
 	double srcX = 1 / scaleWidth;
 	double srcY = 1 / scaleHeight;
 
+
+	int  r = 0;
 	for (int y = 0; y < dst.rows; y++)
 	{
+		int  r = 0;
 		for (int x = 0; x < dst.cols; x++)
 		{
+		
+
 			rx = srcX * x;
 			ry = srcY * y;
 			x1 = (int)floor(rx);
@@ -163,7 +168,7 @@ Mat BilinearInterpolation(const Mat src, const double scaleWidth, const double s
 **************************************************************/
 
 Mat BicubicInterpolation(const Mat src, const double scaleWidth, const double scaleHeight) {
-	Mat dst((int)(src.rows * scaleHeight + 0.5), (int)(src.cols * scaleHeight + 0.5), CV_8UC3);
+	Mat dst((int)(src.rows * scaleHeight + 0.5), (int)(src.cols * scaleWidth + 0.5), CV_8UC3);
 
 	int px[4];		//   x1, x2 are  abs(x) <= 1 , x0, x3 are 1 < abx(x) <=2 
 	int py[4];		//	 y1, y2 are  abs(y) <= 1 , y0, y3 are 1 < abx(y) <=2 
