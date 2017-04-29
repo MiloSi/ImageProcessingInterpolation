@@ -48,12 +48,14 @@ Mat NearestNeighbourInterpolation(const Mat src, const double scaleWidth, const 
 	{
 		Vec3b* dstPtr = dst.ptr<Vec3b>(y);
 		int nearestY = (int) floor((y / scaleHeight) +0.5);
+		if (nearestY == src.rows) nearestY = src.rows - 1;
 		const Vec3b* srcPtr = src.ptr<Vec3b>(nearestY);
 
 		for (int x = 0; x < dst.cols; x++)
 		{
 
 			int nearestX =(int) floor((x / scaleWidth) + 0.5);
+			if (nearestX == src.cols) nearestX = src.cols - 1;
 
 			dstPtr[x][0] = srcPtr[nearestX][0];
 			dstPtr[x][1] = srcPtr[nearestX][1];
@@ -105,7 +107,6 @@ Mat BilinearInterpolation(const Mat src, const double scaleWidth, const double s
 			ry = srcY * y;
 			x1 = (int)floor(rx);
 			y1 = (int)floor(ry);
-
 
 #if 0
 			//boudary handling using Padding
