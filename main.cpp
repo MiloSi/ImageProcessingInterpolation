@@ -1,6 +1,6 @@
 
 /**************************************************************
-2017.04.29
+2017.05.06
 
 Created by Milo Si (Call me C)
 I Studied (Exaclty, Learned) Scale Transfrom and Interpolation
@@ -319,11 +319,29 @@ int main(int argc, char** argv) {
 
 
 
-
+#if 1
 
 	Show("Nearest Neightbor Interpolation",		NearestNeighbourInterpolation(src, scaleWidth, scaleHeight));
 	Show("Bilinear Interpolation",				BilinearInterpolation(src, scaleWidth, scaleHeight));
 	Show("Bicubic Interpolation",				BicubicInterpolation(src, scaleWidth, scaleHeight));
+
+#else
+	//Using OpenCV Fucntion
+
+	Mat nearlest;
+	Mat bilinear;
+	Mat bicubic;
+
+	resize(src, nearlest, Size(), scaleWidth, scaleHeight, INTER_NEAREST);
+	resize(src, bilinear, Size(), scaleWidth, scaleHeight, INTER_LINEAR);
+	resize(src, bicubic, Size(), scaleWidth, scaleHeight, INTER_CUBIC);
+
+
+	Show("Nearest Neightbor Interpolation", nearlest);
+	Show("Bilinear Interpolation",			bilinear);
+	Show("Bicubic Interpolation",			bicubic);
+
+#endif
 
 
 	destroyAllWindows();
