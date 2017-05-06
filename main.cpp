@@ -295,7 +295,7 @@ int main(int argc, char** argv) {
 
 	double scaleWidth = 1.5;								// scale Width and Height 
 	double scaleHeight = 1.5;								
-	
+
 	if (argc > 2)
 	{
 		openImagePath = argv[1];
@@ -304,6 +304,17 @@ int main(int argc, char** argv) {
 	}
 
 	Mat src = imread(openImagePath, IMREAD_COLOR);			// Read Image
+
+
+	//if scale vectors are not bigger than 1.0, then original image is filtered gaussian blurring.
+	if (scaleWidth < 1.0 || scaleHeight < 1.0)
+	{
+		GaussianBlur(src, src, Size(3, 3), 1);
+	}
+
+
+
+
 
 	if (src.empty())
 	{
@@ -327,7 +338,7 @@ int main(int argc, char** argv) {
 
 #else
 	//Using OpenCV Fucntion
-
+	
 	Mat nearlest;
 	Mat bilinear;
 	Mat bicubic;
