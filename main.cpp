@@ -100,14 +100,13 @@ Mat BilinearInterpolation(const Mat src, const double scaleWidth, const double s
 	double srcY = 1 / scaleHeight;
 
 
-	int  r = 0;
+
 	for (int y = 0; y < dst.rows; y++)
 	{
-		int  r = 0;
+		
 		for (int x = 0; x < dst.cols; x++)
 		{
 		
-
 			rx = srcX * x;
 			ry = srcY * y;
 			x1 = (int)floor(rx);
@@ -331,6 +330,8 @@ int main(int argc, char** argv) {
 
 
 #if 1
+
+
 
 	Show("Nearest Neightbor Interpolation",		NearestNeighbourInterpolation(src, scaleWidth, scaleHeight));
 	Show("Bilinear Interpolation",				BilinearInterpolation(src, scaleWidth, scaleHeight));
